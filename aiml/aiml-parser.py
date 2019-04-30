@@ -1,4 +1,5 @@
 import aiml
+import os
 
 class AIMLResponder:
     """
@@ -23,7 +24,7 @@ class AIMLResponder:
 
     @staticmethod
     def getAIMLFilePath():
-        return "/Users/administrator/chatbot/cg-chatbot/aiml/salutations.xml"
+        return os.path.join("aiml","salutations.xml")
 
 
 """
@@ -42,24 +43,4 @@ print(getResponse("asdff"))
 
 
 
-# # The Kernel object is the public interface to
-# # the AIML interpreter.
-# k = aiml.Kernel()
 
-# # Use the 'learn' method to load the contents
-# # of an AIML file into the Kernel.
-# val = k.learn(getAIMLFilePath())
-# print(val)
-
-# # Use the 'respond' method to compute the response
-# # to a user's input string.  respond() returns
-# # the interpreter's response, which in this case
-# # we ignore.
-# k.respond("hello")
-
-# # Loop forever, reading user input from the command
-# # line and printing responses.
-# while True:
-#     # print (k.respond(input("> ")))
-#     val = k.respond(input("> "))
-#     print('value returned is '+ val)
