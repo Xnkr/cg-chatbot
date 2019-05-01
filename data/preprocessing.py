@@ -2,6 +2,7 @@ import re
 import string
 import pandas as pd
 from .contractions import CONTRACTION_MAP
+from static.constants import *
 
 
 def expand_contractions(text: str, contraction_mapping=CONTRACTION_MAP):
@@ -22,25 +23,25 @@ def expand_contractions(text: str, contraction_mapping=CONTRACTION_MAP):
     return expanded_text
 
 
-def context_specific_cleaning(text):
-    text = text.lower().replace('next ’18', 'next\'18').replace('’', '\'')
+def clean_text(text):
+    text = text.lower()
     text = expand_contractions(text)
     return text.translate(str.maketrans("", "", string.punctuation.replace('-', '') + '“”')).strip()
 
 
 def clean_data(df, keep_duplicates='last'):
-    df.drop_duplicates(subset=['question'], keep=keep_duplicates, inplace=True)
+    df.drop_duplicates(subset=[QUESTION], keep=keep_duplicates, inplace=True)
     if df.isnull().values.any():
         print('Found null values. Dropping null values')
         df.dropna(inplace=True)
-    df['clean_question'] = df['question'].apply(context_specific_cleaning)
-    df['clean_answer'] = df['answer'].apply(context_specific_cleaning)
+    df[CLEAN_QUESTION] = df[QUESTION].apply(clean_text)
+    df[CLEAN_ANSWER] = df[ANSWER].apply(clean_text)
     return df
 
 
-def get_dataframe(file, type='csv'):
+def get_dataframe(file, type=JSON):
     print('Reading file')
-    if type == 'csv':
+    if type == CSV:
         return pd.read_csv(file)
-    if type == 'json':
+    if type == JSON:
         return pd.read_json(file)

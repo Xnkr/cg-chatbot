@@ -1,10 +1,9 @@
-
 from bs4 import BeautifulSoup
 import requests
 import json
 
 
-def parseContent(content, outputFile):
+def parse_content(content, output_file):
     if not content:
         return
     soup = BeautifulSoup(content, features="html.parser")
@@ -24,17 +23,14 @@ def parseContent(content, outputFile):
         obj["answer"] = answer_p.text
         output[i] = obj
 
-    with open(outputFile ,"w") as fp:
+    with open(output_file, "w") as fp:
         json.dump(output, fp)
 
 
-def parse(url, outputFile):
+def parse(url, output_file):
     response = requests.get(url)
     if response.status_code == 200:
         print("successfully requested. Length is ", len(response.text))
-        parseContent(response.text, outputFile)
+        parse_content(response.text, output_file)
     else:
         print("failed to query ", url, response.status_code)
-
-
-parse("https://www.credit-suisse.com/lu/en/private-banking/services/online-banking/faq.html", "output.json")
