@@ -27,13 +27,16 @@
 
         <div class="chat-history">
             <ul>
-                <li>
+                <li id="wait-init">
                     <div class="message-data">
                         <span class="message-data-name"><i class="fa fa-circle online"></i> AlphaBot</span>
                     </div>
-                    <i class="fa fa-circle online loading" id="load-1"></i>
-                    <i class="fa fa-circle online loading" style="color: #AED2A6" id="load-2"></i>
-                    <i class="fa fa-circle online loading" style="color:#DAE9DA" id="load-3"></i>
+                    <div class="loading">
+                        <i class="fa fa-circle online" style="color:#fec009"></i>
+                        <i class="fa fa-circle online" style="color:#c40202"></i>
+                        <i class="fa fa-circle online" style="color:#0071b8"></i>
+                        <i class="fa fa-circle online" style="color:#19ac1d"></i>
+                    </div>
                 </li>
             </ul>
 
@@ -63,14 +66,17 @@
 </script>
 
 <script id="message-wait" type="text/x-handlebars-template">
-    <li>
+    <li id="{{id}}">
         <div class="message-data">
             <span class="message-data-name"><i class="fa fa-circle online"></i> AlphaBot</span>
             <span class="message-data-time">{{time}}, Today</span>
         </div>
-        <i class="fa fa-circle online"></i>
-        <i class="fa fa-circle online" style="color: #AED2A6"></i>
-        <i class="fa fa-circle online" style="color:#DAE9DA"></i>
+        <div class="loading">
+            <i class="fa fa-circle online" style="color:#fec009"></i>
+            <i class="fa fa-circle online" style="color:#c40202"></i>
+            <i class="fa fa-circle online" style="color:#0071b8"></i>
+            <i class="fa fa-circle online" style="color:#19ac1d"></i>
+        </div>
     </li>
 </script>
 

@@ -22,7 +22,6 @@ body {
     border-radius: 5px;
 }
 
-
 .chat {
     width: 790px;
     float: left;
@@ -193,33 +192,18 @@ body {
     height: 0;
 }
 
-#load-1{
-    animation-name: loadchat;
-    animation-duration: 1000ms;
+@-webkit-keyframes FadeIn {
+  0% { opacity:0; -webkit-transform:scale(.1);}
+  21.25% {opacity:1; -webkit-transform:scale(1.05);}
+  25% {-webkit-transform:scale(1); }
 }
 
-@keyframes loadchat {
-    from { color: #F2F5F8; }
-    to { color: #86BB71; }
+.loading i {
+    padding-top: 1px;
+    -webkit-animation: FadeIn 4s infinite linear;
 }
 
-
-#load-2{
-    animation-name: loadchat-2;
-    animation-duration: 2000ms;
-}
-
-@keyframes loadchat-2 {
-    from { color: #F2F5F8;}
-    to { color: #AED2A6; }
-}
-
-#load-3{
-    animation-name: loadchat-3;
-    animation-duration: 3000ms;
-}
-
-@keyframes loadchat-3 {
-    from { color: #F2F5F8;}
-    to { color: #DAE9DA; }
-}
+.loading i:nth-child(1){ padding-left: 15px; -webkit-animation-delay: .5s }
+.loading i:nth-child(2){ -webkit-animation-delay: .7s }
+.loading i:nth-child(3){ -webkit-animation-delay: 1s }
+.loading i:nth-child(4){ -webkit-animation-delay: 1.3s }

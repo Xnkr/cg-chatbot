@@ -9,6 +9,7 @@ MODEL_DIR = 'models'
 DATA_FILE = 'faq.json'
 JSON = 'json'
 CSV = 'csv'
+AIML = 'AIML'
 
 # Dataframe
 QUESTION = 'question'

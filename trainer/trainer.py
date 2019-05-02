@@ -50,11 +50,7 @@ def train(file=DATA_FILE, type=JSON):
             print(f'{model.tfidf} generated')
         tfidf_model.save(os.path.join(MODEL_DIR, model.tfidf))
         tfidf = tfidf_model[corpus]
-        lda_model = LdaMulticore(corpus=tfidf, id2word=dictionary, random_state=100,
-                                 num_topics=7,
-                                 passes=10, chunksize=1000, batch=False, alpha='asymmetric', decay=0.5,
-                                 offset=64,
-                                 eta=None, eval_every=0, iterations=100, gamma_threshold=0.001)
+        lda_model = LdaMulticore(corpus=tfidf, id2word=dictionary, num_topics=7)
         lda_model.save(os.path.join(MODEL_DIR, model.model))
         if DEBUG:
             print(f'{model.model} generated')
