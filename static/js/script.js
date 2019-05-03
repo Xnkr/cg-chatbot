@@ -38,7 +38,6 @@
 
                 var loadTemplate = Handlebars.compile($("#message-wait").html());
                 var loadContext = {
-                    id: "wait-temp",
                     time: this.getCurrentTime()
                 };
 
@@ -51,26 +50,26 @@
                     type: 'post',
                     dataType: 'json',
                     contentType: 'application/json',
-                    success: function (data) {
+                    success: (function (data) {
                         // responses
                         var contextResponse = {
-                            response: this.getRandomItem(this.messageResponses),
+                            response: data.prediction,
                             time: this.getCurrentTime()
                         };
-                        this.$chatHistoryList.find('#wait-temp').remove();
+                        this.$chatHistoryList.find('#wait').remove();
                         this.$chatHistoryList.append(templateResponse(contextResponse));
                         this.scrollToBottom();
-                    },
-                    failure: function(data){
+                    }).bind(this),
+                    failure: (function(data){
                       // responses
                         var contextResponse = {
                             response: this.getRandomItem(this.messageResponses),
                             time: this.getCurrentTime()
                         };
-                        this.$chatHistoryList.find('#wait-temp').remove();
+                        this.$chatHistoryList.find('#wait').remove();
                         this.$chatHistoryList.append(templateResponse(contextResponse));
                         this.scrollToBottom();
-                    },
+                    }).bind(this),
                     data: JSON.stringify({'query': this.messageToSend.trim()})
                 });
 

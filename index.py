@@ -41,3 +41,10 @@ def chatbot():
         return resp
     else:
         return "I'm thinking really hard"
+
+@application.route('/', methods=['GET'])
+def index():
+    if request.method == 'GET':
+        return flask.send_from_directory('.','index.html')
+    else:
+        return "I'm thinking really hard"
