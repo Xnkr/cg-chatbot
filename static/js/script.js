@@ -46,7 +46,7 @@
 
                 var templateResponse = Handlebars.compile($("#message-response-template").html());
                 $.ajax({
-                    url: 'http://127.0.0.1:5000/chatbot',
+                    url: 'chatbot',
                     type: 'post',
                     dataType: 'json',
                     contentType: 'application/json',
