@@ -18,7 +18,14 @@ def exists_models():
             return False
     return True
 
+if not exists_data_file() or not exists_models():
+    if not exists_data_file():
+        print('FAQ file not found. Scraping now')
+        webscraper.parse("https://www.credit-suisse.com/lu/en/private-banking/services/online-banking/faq.html",
+                         os.path.join(DATA_DIR, DATA_FILE))
 
+    print('Model not found. Training now')
+    trainer.train(DATA_FILE, JSON)
 faq_df = preprocessing.get_dataframe(os.path.join(DATA_DIR, DATA_FILE), JSON)
 
 question_dictionary = trainer.get_dictionary(QUESTION)
@@ -62,14 +69,6 @@ def domain_specific(faq_df, query):
 
 
 if __name__ == '__main__':
-    if not exists_data_file() or not exists_models():
-        if not exists_data_file():
-            print('FAQ file not found. Scraping now')
-            webscraper.parse("https://www.credit-suisse.com/lu/en/private-banking/services/online-banking/faq.html",
-                             os.path.join(DATA_DIR, DATA_FILE))
-
-        print('Model not found. Training now')
-        trainer.train(DATA_FILE, JSON)
 
     print('Chatbot ready!', )
     query = 'dummy'

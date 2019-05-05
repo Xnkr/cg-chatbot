@@ -6,16 +6,6 @@ import time
 
 application = Flask(__name__)
 
-if not exists_data_file() or not exists_models():
-    if not exists_data_file():
-        print('FAQ file not found. Scraping now')
-        webscraper.parse("https://www.credit-suisse.com/lu/en/private-banking/services/online-banking/faq.html",
-                         os.path.join(DATA_DIR, DATA_FILE))
-
-    print('Model not found. Training now')
-    trainer.train(DATA_FILE, JSON)
-
-
 def get_prediction(query):
     clean_query = preprocessing.clean_text(query)
     aiml_response = aiml_parser.get_response(clean_query)
@@ -48,3 +38,6 @@ def index():
         return flask.send_from_directory('.','index.html')
     else:
         return "I'm thinking really hard"
+
+if __name__ == '__main__':
+    application.run(host='0.0.0.0')
