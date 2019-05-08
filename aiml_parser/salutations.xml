@@ -21,6 +21,16 @@
         </template>
     </category>
     <category>
+        <pattern>HOW ARE YOU</pattern>
+        <template>I'm fine. Thanks for asking!</template>
+    </category>
+    <category>
+        <pattern>WHAT CAN YOU DO</pattern>
+        <template>
+            I answer questions about Credit Suisse online banking
+        </template>
+    </category>
+    <category>
         <pattern>ADIEU</pattern>
         <template>
             <srai>GOOD BYE</srai>
